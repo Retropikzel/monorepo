@@ -1,7 +1,7 @@
 # -*- mode: dockerfile; coding: utf-8 -*-
 FROM debian:bookworm-slim AS build
 RUN apt-get update && apt-get -y --no-install-recommends install \
-      npm nodejs \
+      nodejs npm \
  && rm -rf /var/lib/apt/lists/*
 RUN npm install -g @jcubic/lips@beta
 
