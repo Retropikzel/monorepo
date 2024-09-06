@@ -1,7 +1,7 @@
 # -*- mode: dockerfile; coding: utf-8 -*-
 FROM debian:bookworm-slim
 RUN apt-get update && apt-get -y --no-install-recommends install \
-      libedit2 racket ca-certificates \
+      ca-certificates libedit2 racket \
  && rm -rf /var/lib/apt/lists/*
 COPY scheme-script /usr/local/bin/
 COPY scheme-r7rs /usr/local/bin/
