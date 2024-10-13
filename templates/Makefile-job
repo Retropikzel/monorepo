@@ -1,0 +1,2 @@
+{{{job-name}}}:
+	docker build . --build-arg ADD_JAVA={{add-java?}}-f {{dockerfile}} --tag=schemers/{{{tag}}}

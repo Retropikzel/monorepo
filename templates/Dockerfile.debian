@@ -1,0 +1,23 @@
+# -*- mode: dockerfile; coding: utf-8 -*-
+ARG ADD_JAVA=$ADD_JAVA
+FROM debian:bookworm-slim AS build
+RUN apt-get update && apt-get -y --no-install-recommends install \
+      build-essential pkg-config ca-certificates \
+      netbase openssh-client libmbedtls-dev zlib1g-dev
+
+WORKDIR /build
+RUN echo "{{checksum}} scheme.tgz" > checksum
+ADD {{{url}}} scheme.tgz
+RUN sha256sum scheme.tgz && sha256sum -c checksum
+RUN mkdir scheme && tar -C scheme --strip-components 1 -xf scheme.tgz
+WORKDIR /build/scheme
+RUN ./configure --prefix=/usr/local
+RUN make
+RUN make install
+
+FROM debian:bookworm-slim
+RUN apt-get update && apt-get -y --no-install-recommends install \
+      build-essential pkg-config ca-certificates libmbedtls12
+COPY --from=build /usr/local/ /usr/local/
+RUN echo "{{{scheme-banner}}}" > /usr/local/bin/scheme-banner && chmod +x /usr/local/bin/scheme-banner
+CMD ["scheme-banner"]

@@ -1,0 +1,10 @@
+(((tag . "gauche:latest")
+  (url . "https://github.com/shirok/Gauche/releases/download/release0_9_15/Gauche-0.9.15.tgz")
+  (checksum . "3643e27bc7c8822cfd6fb2892db185f658e8e364938bc2ccfcedb239e35af783")
+  (scheme-banner . "#!/bin/sh\\nset -eu\\ngosh -V | head -n 1\\nexec gosh \"$@\""))
+ ((tag . "kawa:latest")
+  (url . "https://ftp.gnu.org/pub/gnu/kawa/kawa-3.1.1.tar.gz")
+  (checksum . "8c9a50cd6b100154c901bd190b3acd2fb8353f33622c4a2ce8fa392a7f09e019")
+  (scheme-banner . "#!/bin/sh\\nset -eu\\njava -version\\nkawa -V | head -n 1\\nexec kawa \"$@\"")
+  (add-java? . #t)))
+

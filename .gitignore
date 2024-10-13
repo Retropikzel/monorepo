@@ -1,2 +1,4 @@
 /www/schemeorg.css
 *.swp
+generated-dockerfiles
+Makefile.generated
